@@ -1,7 +1,18 @@
 // Assert Method
-function assert(value, desc){
+function assert(value, text){
 	var li = document.createElement("li");
 	li.className = value ? "pass" : "fail";
-	li.appendChild(document.createTextNode(desc));
-	document.getElementById("results").appendChild(li);
+	li.appendChild(document.createTextNode(text));
+	var results = document.getElementById("results");
+	if(!results){
+		results = document.createElement("ul");
+		results.setAttribute("id", "results");
+		document.body.appendChild(results);
+	}
+	results.appendChild(li)
 }
+
+// Other Bits
+function pass(text) {assert(true, text)}
+function fail(text) { assert (false, text)}
+function report(text){ pass(text)};
